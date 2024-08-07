@@ -1,9 +1,19 @@
+import { Request, Response } from "express";
+
 const express = require("express");
 const SpotifyWebApi = require("spotify-web-api-node");
 
 const app = express();
 
-app.post("/login", (req, res) => {
+interface AuthorizationCodeGrantResponse {
+  body: {
+    access_token: string;
+    refresh_token: string;
+    expires_in: number;
+  };
+}
+
+app.post("/login", (req: Request, res: Response) => {
   const code = req.body.code;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: "http://localhost:3000/callback",
@@ -13,7 +23,7 @@ app.post("/login", (req, res) => {
 
   spotifyApi
     .authorizationCodeGrant(code)
-    .then((data) => {
+    .then((data: AuthorizationCodeGrantResponse) => {
       res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,
@@ -24,3 +34,5 @@ app.post("/login", (req, res) => {
       res.sendStatus(400);
     });
 });
+
+app.listen(3001);

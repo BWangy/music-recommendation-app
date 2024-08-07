@@ -7,7 +7,7 @@ export default function Login() {
       <nav className="flex py-6 px-3 justify-between mb-32">
         <div className="flex-1">
           <a href="/" className="text-green-300 text-xl font-semibold">
-            FreshTunes
+            NewMusic
           </a>
         </div>
         <a href={AUTH_URL}>
