@@ -1,3 +1,6 @@
+import useAuth from "./useAuth";
+
 export default function Dashboard({ code }) {
-  return <div></div>;
+  const accessToken = useAuth(code);
+  return <div>{code}</div>;
 }
