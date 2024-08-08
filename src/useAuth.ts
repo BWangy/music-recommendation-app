@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 type UseAuthCode = string | undefined;
 
@@ -7,6 +8,8 @@ export default function useAuth(code: UseAuthCode) {
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [expiresIn, setExpiresIn] = useState();
+
+  const history = useNavigate;
 
   useEffect(() => {
     axios
@@ -18,7 +21,7 @@ export default function useAuth(code: UseAuthCode) {
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
-        window.history.pushState({}, "", "/");
+        window.history.pushState({}, "", "/dashboard");
       })
       .catch(() => {
         window.location.href = "/";
