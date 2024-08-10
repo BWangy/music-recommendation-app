@@ -6,7 +6,10 @@ export default function Login() {
     <section className="min-h-screen">
       <nav className="flex py-6 px-3 justify-between mb-32">
         <div className="flex-1">
-          <a href="/" className="text-green-300 text-xl font-semibold">
+          <a
+            href="/"
+            className="text-green-300 text-xl font-semibold hover:opacity-80"
+          >
             NewMusic
           </a>
         </div>

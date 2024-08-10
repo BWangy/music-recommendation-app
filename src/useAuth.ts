@@ -9,7 +9,7 @@ export default function useAuth(code: UseAuthCode) {
   const [refreshToken, setRefreshToken] = useState();
   const [expiresIn, setExpiresIn] = useState();
 
-  const history = useNavigate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -21,7 +21,7 @@ export default function useAuth(code: UseAuthCode) {
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
-        window.history.pushState({}, "", "/dashboard");
+        navigate("/dashboard");
       })
       .catch(() => {
         window.location.href = "/";
