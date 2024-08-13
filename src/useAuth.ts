@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-type UseAuthCode = string | undefined;
+type UseAuthCode = string | null;
 
 export default function useAuth(code: UseAuthCode) {
   const [accessToken, setAccessToken] = useState();
@@ -21,10 +21,11 @@ export default function useAuth(code: UseAuthCode) {
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
-        navigate("/dashboard");
+
+        /* navigate("/dashboard"); */
       })
       .catch(() => {
-        window.location.href = "/";
+        navigate("/");
       });
   }, [code]);
 

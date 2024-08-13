@@ -1,9 +1,13 @@
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function App() {
   const code = new URLSearchParams(window.location.search).get("code");
+
+  console.log(code);
+
   return (
     <BrowserRouter>
       <Routes>
