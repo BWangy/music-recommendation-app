@@ -5,3 +5,11 @@
 body {
   @apply bg-gray-950 text-white;
 }
+
+.simplebar-scrollbar::before {
+  background-color: white;
+}
+
+.simplebar-track {
+  background-color: transparent;
+}

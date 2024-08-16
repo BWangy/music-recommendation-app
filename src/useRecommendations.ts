@@ -7,7 +7,7 @@ type Artist = {
   genres: string[];
 };
 
-type Track = {
+export type Track = {
   id: string;
   name: string;
   artists: Artist[];
