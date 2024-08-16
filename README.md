@@ -1,3 +1,3 @@
 # Music recommendation app
 
-Work in progress
+An app to help you find new music to listen to
