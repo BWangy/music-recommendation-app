@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useDebugValue, useEffect, useState } from "react";
 
 type Artist = {
   id: string;
@@ -26,7 +26,8 @@ type Image = {
 
 export default function useRecommendations(
   accessToken: string | undefined,
-  type = "tracks"
+  type = "tracks",
+  refresh = false
 ) {
   const [recommendations, setRecommendations] = useState<Track[] | undefined>();
 
@@ -87,8 +88,19 @@ export default function useRecommendations(
           );
 
           const validGenres = genreSeedsRes.data.genres;
+          const randomGenres = new Set();
 
-          const topTracksRes = await axios.get(
+          while (randomGenres.size < 5) {
+            const randomIndex = Math.floor(Math.random() * validGenres.length);
+            randomGenres.add(validGenres[randomIndex]);
+          }
+
+          const selectedGenres = Array.from(randomGenres);
+          console.log(selectedGenres);
+
+          params = { seed_genres: selectedGenres.join(",") };
+
+          /* const topTracksRes = await axios.get(
             "https://api.spotify.com/v1/me/top/tracks?time_range=short_term",
             {
               headers: {
@@ -130,7 +142,7 @@ export default function useRecommendations(
             console.log(filteredGenres);
 
             params = { seed_genres: filteredGenres.join(",") };
-          }
+          } */
         }
 
         const recommendationsRes = await axios.get(
@@ -143,8 +155,6 @@ export default function useRecommendations(
           }
         );
 
-        console.log(recommendationsRes.data.tracks);
-
         setRecommendations(recommendationsRes.data.tracks);
       } catch (error) {
         console.error("Error fetching recommendations:", error);
@@ -152,7 +162,7 @@ export default function useRecommendations(
     };
 
     fetchRecommendations();
-  }, [accessToken, type]);
+  }, [accessToken, type, refresh]);
 
   return recommendations;
 }

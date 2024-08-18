@@ -20,8 +20,10 @@ export default function Login() {
         </a>
       </nav>
       <div className="text-center animate-fadeInUp">
-        <h1 className="text-5xl py-2">Welcome!</h1>
-        <h2 className="text-3xl py-2">Please login to your Spotify account</h2>
+        <h1 className="text-3xl py-2 md:text-5xl">Welcome!</h1>
+        <h2 className="text-xl py-2 md:text-3xl">
+          Please login to your Spotify account
+        </h2>
       </div>
     </section>
   );
