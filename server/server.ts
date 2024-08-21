@@ -1,8 +1,11 @@
 import { Request, Response } from "express";
 
 const express = require("express");
+require("dotenv").config({ path: "../.env" });
 const SpotifyWebApi = require("spotify-web-api-node");
 const cors = require("cors");
+
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 app.use(cors());
@@ -21,7 +24,7 @@ app.post("/refresh", (req: Request, res: Response) => {
   const spotifyApi = new SpotifyWebApi({
     redirectUri: "http://localhost:3000/callback",
     clientId: "f7dfe6e6cd314d8c83dbf81b737932b4",
-    clientSecret: "67ebc02730e1483ba6e679df05f99af8",
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     refreshToken,
   });
 
@@ -44,7 +47,7 @@ app.post("/login", (req: Request, res: Response) => {
   const spotifyApi = new SpotifyWebApi({
     redirectUri: "http://localhost:3000/callback",
     clientId: "f7dfe6e6cd314d8c83dbf81b737932b4",
-    clientSecret: "67ebc02730e1483ba6e679df05f99af8",
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   });
 
   spotifyApi
@@ -66,4 +69,4 @@ app.post("/login", (req: Request, res: Response) => {
     });
 });
 
-app.listen(3001);
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
