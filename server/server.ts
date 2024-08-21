@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 
-const express = require("express");
-require("dotenv").config({ path: "../.env" });
-const SpotifyWebApi = require("spotify-web-api-node");
-const cors = require("cors");
-const path = require("path");
+import express from "express";
+import dotenv from "dotenv";
+import SpotifyWebApi from "spotify-web-api-node";
+import cors from "cors";
+import path from "path";
+
+const __dirname = import.meta.dirname;
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const PORT = process.env.PORT || 3001;
 const buildPath = path.join(__dirname, "../src/build");
@@ -17,14 +20,14 @@ app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(buildPath, "index.html"));
 });
 
-interface AuthorizationCodeGrantResponse {
+/* interface AuthorizationCodeGrantResponse {
   body: {
     access_token: string;
     refresh_token: string;
     expires_in: number;
   };
 }
-
+ */
 app.post("/refresh", (req: Request, res: Response) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
@@ -36,7 +39,7 @@ app.post("/refresh", (req: Request, res: Response) => {
 
   spotifyApi
     .refreshAccessToken()
-    .then((data: AuthorizationCodeGrantResponse) => {
+    .then((data /* : AuthorizationCodeGrantResponse */) => {
       res.json({
         accessToken: data.body.access_token,
         expiresIn: data.body.expires_in,
@@ -58,7 +61,7 @@ app.post("/login", (req: Request, res: Response) => {
 
   spotifyApi
     .authorizationCodeGrant(code)
-    .then((data: AuthorizationCodeGrantResponse) => {
+    .then((data /* : AuthorizationCodeGrantResponse */) => {
       res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,
