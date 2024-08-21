@@ -1,9 +1,8 @@
-import { RefObject, useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import useAuth from "./useAuth";
 import useRecommendations from "./useRecommendations";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
-import { Track } from "./useRecommendations";
 
 interface DashboardProps {
   code: string | null;

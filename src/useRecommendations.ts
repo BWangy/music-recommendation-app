@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useDebugValue, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Artist = {
   id: string;
