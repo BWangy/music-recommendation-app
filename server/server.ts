@@ -4,12 +4,18 @@ const express = require("express");
 require("dotenv").config({ path: "../.env" });
 const SpotifyWebApi = require("spotify-web-api-node");
 const cors = require("cors");
+const path = require("path");
 
 const PORT = process.env.PORT || 3001;
+const buildPath = path.join(__dirname, "../src/build");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(buildPath));
+app.get("*", (req: Request, res: Response) => {
+  res.sendFile(path.join(buildPath, "index.html"));
+});
 
 interface AuthorizationCodeGrantResponse {
   body: {
