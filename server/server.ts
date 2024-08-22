@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 3001;
-/* const buildPath = path.join(__dirname, "../src/build"); */
+const buildPath = path.join(__dirname, "../dist");
 
 const allowedOrigins = [
   "https://newmusic-kfa2.onrender.com",
@@ -30,10 +30,10 @@ const corsOptions = {
 const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
-/* app.use(express.static(buildPath));
+app.use(express.static(buildPath));
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(buildPath, "index.html"));
-}); */
+});
 
 /* interface AuthorizationCodeGrantResponse {
   body: {
