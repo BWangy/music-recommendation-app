@@ -10,15 +10,26 @@ const __dirname = import.meta.dirname;
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const PORT = process.env.PORT || 3001;
-const buildPath = path.join(__dirname, "../src/build");
+/* const buildPath = path.join(__dirname, "../src/build"); */
+
+const allowedOrigins = [
+  "https://newmusic-kfa2.onrender.com",
+  "http://localhost:3000",
+];
+
+const corsOptions = {
+  origin: allowedOrigins,
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
 
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.static(buildPath));
+/* app.use(express.static(buildPath));
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(buildPath, "index.html"));
-});
+}); */
 
 /* interface AuthorizationCodeGrantResponse {
   body: {
