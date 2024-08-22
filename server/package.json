@@ -6,8 +6,8 @@
   "scripts": {
     "devStart": "cross-env NODE_ENV=development tsx server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cross-env NODE_ENV=production tsc",
-    "start": "cross-env NODE_ENV=production dist/server.js"
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
