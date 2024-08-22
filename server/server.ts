@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 3001;
-const buildPath = path.join(__dirname, "../dist");
+const buildPath = path.join(__dirname, "../src/dist");
 
 const allowedOrigins = [
   "https://newmusic-kfa2.onrender.com",
