@@ -12,8 +12,10 @@ export default function useAuth(code: UseAuthCode) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const apiURL = import.meta.env.VITE_API_URL;
+
     axios
-      .post("http://localhost:3001/login", {
+      .post(`${apiURL}/login`, {
         code,
       })
       .then((res) => {
@@ -30,10 +32,12 @@ export default function useAuth(code: UseAuthCode) {
   }, [code]);
 
   useEffect(() => {
+    const apiURL = import.meta.env.VITE_API_URL;
+
     if (!refreshToken || !expiresIn) return;
     const interval = setInterval(() => {
       axios
-        .post("http://localhost:3001/refresh", {
+        .post(`${apiURL}/refresh`, {
           refreshToken,
         })
         .then((res) => {

@@ -7,7 +7,11 @@ import cors from "cors";
 import path from "path";
 
 const __dirname = import.meta.dirname;
-dotenv.config({ path: path.resolve(__dirname, "../.env") });
+if (process.env.NODE_ENV === "production") {
+  dotenv.config({ path: path.resolve(__dirname, "../.env.production") });
+} else {
+  dotenv.config({ path: path.resolve(__dirname, "../.env.development") });
+}
 
 const PORT = process.env.PORT || 3001;
 /* const buildPath = path.join(__dirname, "../src/build"); */
@@ -42,7 +46,10 @@ app.get("*", (req: Request, res: Response) => {
 app.post("/refresh", (req: Request, res: Response) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
-    redirectUri: "http://localhost:3000/callback",
+    redirectUri:
+      process.env.NODE_ENV === "production"
+        ? "https://newmusic-kfa2.onrender.com/callback"
+        : "http://localhost:3000/callback",
     clientId: "f7dfe6e6cd314d8c83dbf81b737932b4",
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     refreshToken,
@@ -65,7 +72,10 @@ app.post("/refresh", (req: Request, res: Response) => {
 app.post("/login", (req: Request, res: Response) => {
   const code = req.body.code;
   const spotifyApi = new SpotifyWebApi({
-    redirectUri: "http://localhost:3000/callback",
+    redirectUri:
+      process.env.NODE_ENV === "production"
+        ? "https://newmusic-kfa2.onrender.com/callback"
+        : "http://localhost:3000/callback",
     clientId: "f7dfe6e6cd314d8c83dbf81b737932b4",
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   });
