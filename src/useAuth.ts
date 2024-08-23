@@ -26,7 +26,8 @@ export default function useAuth(code: UseAuthCode) {
 
         /* navigate("/dashboard"); */
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("API request error:", error.response || error);
         navigate("/");
       });
   }, [code]);
