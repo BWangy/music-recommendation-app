@@ -5,4 +5,8 @@ An app to help you find new music to listen to. The site may take a while to loa
 Site: https://newmusic-kfa2.onrender.com
 
 ![Screenshot 2024-08-30 181118](https://github.com/user-attachments/assets/7288223e-94b1-4a12-af28-8ddeb2c71e6b)
+
+
+
+
 ![Screenshot 2024-08-30 181437](https://github.com/user-attachments/assets/4351797f-e7ae-409a-875f-f9b1435f188e)
