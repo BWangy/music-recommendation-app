@@ -109,14 +109,21 @@ export default function Dashboard({ code }: DashboardProps) {
                     className="relative flex flex-col items-start justify-center py-6 gap-y-2 md:gap-y-4"
                     key={track.id}
                   >
-                    <div className="relative aspect-square rounded-md w-32 h-32 overflow-hidden md:w-52 md:h-52">
-                      <img
-                        src={track.album.images[0].url}
-                        alt={`${track.name} album cover`}
-                        className="object-cover"
-                        title={track.name}
-                      />
-                    </div>
+                    <a
+                      href={track.external_urls.spotify}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:opacity-80 transition-opacity duration-200"
+                    >
+                      <div className="relative aspect-square rounded-md w-32 h-32 overflow-hidden md:w-52 md:h-52">
+                        <img
+                          src={track.album.images[0].url}
+                          alt={`${track.name} album cover`}
+                          className="object-cover"
+                          title={track.name}
+                        />
+                      </div>
+                    </a>
                     <div className="flex flex-col items-start w-full gap-y-0.5 md:gap-y-1">
                       <span
                         className="w-32 text-base font-bold truncate md:w-52 md:text-xl"
@@ -133,7 +140,7 @@ export default function Dashboard({ code }: DashboardProps) {
                   </li>
                 ))
               ) : (
-                <li>No recommendations available</li>
+                <li>Loading...</li>
               )}
             </ul>
           </div>
@@ -175,14 +182,22 @@ export default function Dashboard({ code }: DashboardProps) {
                     className="relative flex flex-col items-start justify-center py-6 gap-y-2 md:gap-y-4"
                     key={track.id}
                   >
-                    <div className="relative aspect-square rounded-md w-32 h-32 overflow-hidden md:w-52 md:h-52">
-                      <img
-                        src={track.album.images[0].url}
-                        alt={`${track.name} album cover`}
-                        className="w-full"
-                        title={track.name}
-                      />
-                    </div>
+                    <a
+                      href={track.external_urls.spotify}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:opacity-80 transition-opacity duration-200"
+                    >
+                      <div className="relative aspect-square rounded-md w-32 h-32 overflow-hidden md:w-52 md:h-52">
+                        <img
+                          src={track.album.images[0].url}
+                          alt={`${track.name} album cover`}
+                          className="w-full"
+                          title={track.name}
+                        />
+                      </div>
+                    </a>
+
                     <div className="flex flex-col items-start w-full gap-y-0.5 md:gap-y-1">
                       <span
                         className="w-32 text-base font-bold truncate md:w-52 md:text-xl"
@@ -199,7 +214,7 @@ export default function Dashboard({ code }: DashboardProps) {
                   </li>
                 ))
               ) : (
-                <li>No recommendations available</li>
+                <li>Loading...</li>
               )}
             </ul>
           </div>
@@ -241,14 +256,22 @@ export default function Dashboard({ code }: DashboardProps) {
                     className="relative flex flex-col items-start justify-center py-6 gap-y-2 md:gap-y-4"
                     key={track.id}
                   >
-                    <div className="relative aspect-square rounded-md w-32 h-32 overflow-hidden md:w-52 md:h-52">
-                      <img
-                        src={track.album.images[0].url}
-                        alt={`${track.name} album cover`}
-                        className="w-full"
-                        title={track.name}
-                      />
-                    </div>
+                    <a
+                      href={track.external_urls.spotify}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:opacity-80 transition-opacity duration-200"
+                    >
+                      <div className="relative aspect-square rounded-md w-32 h-32 overflow-hidden md:w-52 md:h-52">
+                        <img
+                          src={track.album.images[0].url}
+                          alt={`${track.name} album cover`}
+                          className="w-full"
+                          title={track.name}
+                        />
+                      </div>
+                    </a>
+
                     <div className="flex flex-col items-start w-full gap-y-0.5 md:gap-y-1">
                       <span
                         className="w-32 text-base font-bold truncate md:w-52 md:text-xl"
@@ -265,7 +288,7 @@ export default function Dashboard({ code }: DashboardProps) {
                   </li>
                 ))
               ) : (
-                <li>No recommendations available</li>
+                <li>Loading...</li>
               )}
             </ul>
           </div>

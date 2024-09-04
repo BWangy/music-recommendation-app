@@ -12,6 +12,11 @@ export type Track = {
   name: string;
   artists: Artist[];
   album: Album;
+  external_urls: Url;
+};
+
+type Url = {
+  spotify: string;
 };
 
 type Album = {
